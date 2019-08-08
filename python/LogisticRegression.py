@@ -5,9 +5,11 @@ Created on Sun Jul  7 12:44:30 2019
 @author: RAMAN
 """
 
+!pip install pandas-profiling 
 import os
 import numpy as np
 import pandas as pd
+import pandas_profiling
 
 os.chdir("C:\\Users\\RAMAN\\Documents\\Python Scripts\\Data")
 os.getcwd()
@@ -25,6 +27,12 @@ raw_data.shape
 # Check the summary of the data
 summary_of_raw = raw_data.describe(include = 'all')
 raw_data.dtypes
+
+# Using pandas_profiling
+raw_data.profile_report()
+
+profile = raw_data.profile_report(title='Pandas Profiling Report')  
+profile.to_file(output_file="Credit Risk data profiling.html")
 
 # Check for NA values in all the columns
 raw_data.isnull().sum()
